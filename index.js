@@ -11,6 +11,7 @@ const PADDLE_THICKNESS = 10;
 var player1Score = 0;
 var player2Score = 0;
 const WINNING_SCORE = 3;
+var showingWinScreen = false;
 window.onload = function() {
   canvas = document.getElementById('canvas');
   canvasContext = canvas.getContext('2d');
@@ -23,6 +24,7 @@ window.onload = function() {
     var mousePos = calculateMousePosition(evt);
     paddle1Y = mousePos.y - PADDLE_HEIGHT/2;
   });
+  
 }
 
 function calculateMousePosition(evt) {//fires every time the mouse moves
@@ -40,6 +42,7 @@ function ballReset() {
     if(player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE){
       player1Score = 0;
       player2Score = 0;
+      showingWinScreen = true;
     }
     ballSpeedX = -ballSpeedX;
     ballX = canvas.width/2;
@@ -56,6 +59,9 @@ function computerMovement() {
 }
 
 function moveEverything() {
+    if(showingWinScreen){
+      return;
+    }
     computerMovement();
 
     ballX = ballX + ballSpeedX;
@@ -93,6 +99,11 @@ function moveEverything() {
 function drawEverything() {
   //make game board
   colorRect(0,0,canvas.width,canvas.height,'black');
+  if(showingWinScreen){
+    canvasContext.fillStyle = 'white';
+    canvasContext.fillText('Click to continue',canvas.width/2,100);
+    return;
+  }
   //left player paddle
   colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
   //right player paddle
