@@ -10,6 +10,7 @@ const PADDLE_HEIGHT = 100;
 const PADDLE_THICKNESS = 10;
 var player1Score = 0;
 var player2Score = 0;
+const WINNING_SCORE = 3;
 window.onload = function() {
   canvas = document.getElementById('canvas');
   canvasContext = canvas.getContext('2d');
@@ -36,6 +37,10 @@ function calculateMousePosition(evt) {//fires every time the mouse moves
 }
 
 function ballReset() {
+    if(player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE){
+      player1Score = 0;
+      player2Score = 0;
+    }
     ballSpeedX = -ballSpeedX;
     ballX = canvas.width/2;
     ballY = canvas.height/2;
@@ -62,8 +67,9 @@ function moveEverything() {
         var deltaY = ballY - (paddle1Y + PADDLE_HEIGHT/2);
         ballSpeedY = deltaY * 0.35;
       } else {
-        ballReset();
         player2Score++;
+        ballReset();
+
       }
     }
 
@@ -73,8 +79,9 @@ function moveEverything() {
         var deltaY = ballY - (paddle2Y + PADDLE_HEIGHT/2);
         ballSpeedY = deltaY * 0.35;
       } else {
-        ballReset();
         player1Score++;
+        ballReset();
+
       }
     }
 
