@@ -100,6 +100,11 @@ function moveEverything() {
       ballSpeedY = -ballSpeedY;
     }
 }
+function drawNet(){
+  for(let i = 0; i < canvas.height; i+=40){
+    colorRect(canvas.width/2 - 1 ,i,2,20,'white');
+  }
+}
 function drawEverything() {
   //make game board
   colorRect(0,0,canvas.width,canvas.height,'black');
@@ -113,6 +118,7 @@ function drawEverything() {
     canvasContext.fillText('Click to continue',canvas.width/2,200);
     return;
   }
+  drawNet();
   //left player paddle
   colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
   //right player paddle
