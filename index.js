@@ -32,12 +32,18 @@ function calculateMousePosition(evt) {//fires every time the mouse moves
   };
 }
 
+function ballReset() {
+    ballX = canvas.width/2;
+    ballY = canvas.height/2;
+}
+
 function moveEverything() {
     ballX = ballX + ballSpeedX;
     ballY = ballY + ballSpeedY;
 
     if(ballX > canvas.width || ballX < 0){
-      ballSpeedX = -ballSpeedX;
+      //ballSpeedX = -ballSpeedX;
+      ballReset();
     }
 
 
