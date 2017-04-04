@@ -62,7 +62,7 @@ function drawEverything() {
   //make game board
   colorRect(0,0,canvas.width,canvas.height,'black');
   //left player paddle
-  colorRect(0,paddle1Y,10,PADDLE_HEIGHT,'white');
+  colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
   //right player paddle
   colorRect(canvas.width - PADDLE_THICKNESS,paddle2Y ,PADDLE_THICKNESS, PADDLE_HEIGHT,'white');
   //ball
