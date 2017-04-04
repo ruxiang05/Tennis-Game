@@ -56,18 +56,22 @@ function moveEverything() {
     ballX = ballX + ballSpeedX;
     ballY = ballY + ballSpeedY;
 
-    if(ballX > canvas.width || ballX < 0){
-      if(ballY > paddle1Y && ballY < (paddle1Y + PADDLE_HEIGHT) || ballY > paddle2Y && ballY < (paddle2Y + PADDLE_HEIGHT)){
+    if(ballX < 0) {
+      if(ballY > paddle1Y && ballY < (paddle1Y + PADDLE_HEIGHT)){
         ballSpeedX = -ballSpeedX;
       } else {
-        if(ballX > canvas.width) {
-          player1Score++;
-        } else if (ballX < 0){
-          player2Score++;
-        }
         ballReset();
+        player2Score++;
       }
+    }
 
+    if(ballX > canvas.width) {
+      if(ballY > paddle2Y && ballY < (paddle2Y + PADDLE_HEIGHT)){
+        ballSpeedX = -ballSpeedX;
+      } else {
+        ballReset();
+        player1Score++;
+      }
     }
 
     if(ballY > canvas.height || ballY < 0){
